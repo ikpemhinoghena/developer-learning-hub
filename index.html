@@ -1,74 +1,198 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#111c31" />
-    <meta name="description" content="Developer Learning Hub is taking shape: a focused place to discover GitHub repositories, explore Stack Overflow questions, and find your next learning direction." />
-    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101b2d" />
+    <meta
+      name="description"
+      content="Discover GitHub repositories and Stack Overflow questions. Search, filter, and save resources in your developer learning library."
+    />
+    <meta property="og:title" content="Developer Learning Hub" />
+    <meta
+      property="og:description"
+      content="Discover. Learn. Build. Explore open source and shared technical knowledge."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://ikpemhinoghena.github.io/developer-learning-hub/"
+    />
+    <link
+      rel="canonical"
+      href="https://ikpemhinoghena.github.io/developer-learning-hub/"
+    />
+    <link rel="icon" href="%BASE_URL%favicon.svg" />
     <title>Developer Learning Hub — Discover. Learn. Build.</title>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header">
+    <header>
       <div class="container header-inner">
-        <a class="brand" href="#" aria-label="Developer Learning Hub home"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>developer<span class="brand-secondary">learning hub<span class="brand-dot">.</span></span></span></a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" hidden>Menu <span aria-hidden="true">☰</span></button>
+        <a class="brand" href="#main"
+          ><span class="brand-mark">&lt;/&gt;</span
+          ><span
+            >developer<strong
+              >learning hub<span class="mint">.</span></strong
+            ></span
+          ></a
+        ><button
+          class="menu-toggle"
+          type="button"
+          hidden
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+        >
+          Menu
+        </button>
         <nav id="primary-navigation" aria-label="Main navigation">
-          <a href="#discover">Discover</a><a href="#how-it-works">The idea</a><a class="nav-cta" href="#project-status">What’s next <span aria-hidden="true">↗</span></a>
+          <a href="#discover">Explore</a
+          ><a href="#library">Saved resources <span id="saved-count">0</span></a
+          ><a href="#about">About ↗</a>
         </nav>
       </div>
     </header>
     <main id="main">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="container hero-grid">
-          <div class="hero-copy">
-            <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> A new space for curious developers</p>
-            <h1 id="hero-title">Your next<br />idea starts<br />with <span>discovery.</span></h1>
-            <p class="hero-description">Great projects start with a little curiosity. A place to explore open source, untangle questions, and turn what you learn into what you build.</p>
-            <a class="button-primary" href="#discover">Explore the hub <span aria-hidden="true">↗</span></a>
-            <p class="hero-note">Discover. Learn. Build. Repeat.</p>
+      <section class="hero container">
+        <div>
+          <p class="eyebrow">● YOUR CURIOSITY. YOUR NEXT CHAPTER.</p>
+          <h1>Good ideas start<br />with <em>discovery.</em></h1>
+          <p class="hero-description">
+            Explore the code. Follow the questions. Find the resources that turn
+            “what if” into your next build.
+          </p>
+          <a class="primary" href="#discover">Find your next discovery ↗</a>
+          <p class="hero-note">Discover. Learn. Build. Repeat.</p>
+        </div>
+        <aside class="loop" aria-label="The developer's loop">
+          <p class="eyebrow">THE DEVELOPER'S LOOP ↗</p>
+          <div>
+            <small>01 / DISCOVER</small><strong>&lt;/&gt; Open source</strong>
           </div>
-          <div class="discovery-map" role="img" aria-label="The learning journey: curiosity leads to open source exploration, shared knowledge, and your next build.">
-            <div class="map-top"><span class="tiny-label">THE DEVELOPER’S LOOP</span><span aria-hidden="true">↗</span></div>
-            <div class="map-orbit orbit-one"></div><div class="map-orbit orbit-two"></div>
-            <div class="map-center"><span aria-hidden="true">&lt;/&gt;</span><strong>Stay curious.</strong><small>Keep building.</small></div>
-            <div class="map-card map-source"><span class="map-icon" aria-hidden="true">⌘</span><div><small>01 / DISCOVER</small><strong>Open source</strong></div></div>
-            <div class="map-card map-knowledge"><span class="map-icon" aria-hidden="true">?</span><div><small>02 / LEARN</small><strong>Shared knowledge</strong></div></div>
-            <div class="map-build"><span aria-hidden="true">✳</span> Your next build</div>
-            <div class="map-bottom"><span>curiosity → possibility</span><span aria-hidden="true">+</span></div>
+          <div>
+            <small>02 / LEARN</small><strong>? Shared knowledge</strong>
+          </div>
+          <div>
+            <small>03 / BUILD</small><strong>✳ Something of your own</strong>
+          </div>
+          <p>Stay curious. Keep building. <span class="mint">↻</span></p>
+        </aside>
+      </section>
+      <section class="container" id="discover" aria-labelledby="discover-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">A FOCUSED STARTING POINT</p>
+            <h2 id="discover-title">Where will curiosity take you?</h2>
+          </div>
+          <p>
+            Real projects. Real questions.<br />A little less searching around.
+          </p>
+        </div>
+        <div class="workspace-panel">
+          <div class="source-switch" role="group" aria-label="Search source">
+            <button type="button" data-source="github" aria-pressed="true">
+              &lt;/&gt; GitHub repositories</button
+            ><button
+              type="button"
+              data-source="stackoverflow"
+              aria-pressed="false"
+            >
+              ≋ Stack Overflow questions
+            </button>
+          </div>
+          <form id="search-form">
+            <label for="query">What would you like to explore?</label>
+            <div class="search-row">
+              <input
+                id="query"
+                type="search"
+                required
+                minlength="2"
+                maxlength="120"
+                placeholder="Try JavaScript, accessibility, or your next big idea"
+                aria-describedby="search-help"
+              /><button class="primary" type="submit">Search ↗</button>
+            </div>
+            <p id="search-help">
+              Enter 2–120 characters. Public resources, no account needed.
+            </p>
+          </form>
+          <div class="suggestions">
+            <span>START WITH</span
+            ><button type="button" data-query="javascript">JavaScript</button
+            ><button type="button" data-query="accessibility">
+              Accessibility</button
+            ><button type="button" data-query="python">Python</button
+            ><button type="button" data-query="web development">
+              Web development
+            </button>
+          </div>
+          <div class="filters">
+            <label>Sort by<select id="sort"></select></label
+            ><label
+              ><span id="filter-name">Language</span
+              ><select id="filter"></select></label
+            ><button id="reset" type="button">Reset filters</button>
           </div>
         </div>
-      </section>
-      <section class="discovery-section container" id="discover" aria-labelledby="discover-title">
-        <div class="section-heading"><div><p class="eyebrow">LESS SEARCHING. MORE EXPLORING.</p><h2 id="discover-title">Find your next rabbit hole.</h2></div><p>Two sources of developer knowledge.<br />One focused starting point.</p></div>
-        <div class="search-shell">
-          <label for="discovery-search">What are you curious about?</label>
-          <div class="search-row"><span aria-hidden="true">⌕</span><input id="discovery-search" type="search" placeholder="A language, a concept, a new idea…" disabled aria-describedby="search-status" /><button type="button" disabled>Search the hub <span aria-hidden="true">→</span></button></div>
-          <p id="search-status"><span class="small-pill">COMING SOON</span> Search will be available after the API integrations are connected.</p>
+        <div class="results-heading">
+          <h3>Recent explorations</h3>
+          <button id="clear-history" type="button">Clear history</button>
         </div>
-        <div class="discovery-grid">
-          <article class="discovery-card" aria-labelledby="repositories-title">
-            <div class="card-top"><span class="source-symbol github-symbol" aria-hidden="true">&lt;/&gt;</span><span class="availability">Integration planned</span></div>
-            <p class="tiny-label">EXPLORE THE CODE</p><h3 id="repositories-title">GitHub repositories</h3><p>Find open-source projects to study, experiment with, and spark your next idea.</p>
-            <div class="empty-state"><span class="empty-symbol" aria-hidden="true">⌘</span><strong>A space for your next discovery.</strong><p>Repository results will appear here once the GitHub API is connected.</p></div>
-            <div class="card-footer"><span>Powered by GitHub <span class="planned-label">· planned</span></span><a href="https://github.com/explore">Explore GitHub <span aria-hidden="true">↗</span></a></div>
-          </article>
-          <article class="discovery-card" aria-labelledby="questions-title">
-            <div class="card-top"><span class="source-symbol stack-symbol" aria-hidden="true">≋</span><span class="availability">Integration planned</span></div>
-            <p class="tiny-label">FOLLOW THE QUESTIONS</p><h3 id="questions-title">Stack Overflow questions</h3><p>Explore technical questions and the explanations that help concepts click.</p>
-            <div class="empty-state"><span class="empty-symbol" aria-hidden="true">?</span><strong>Every question is a starting point.</strong><p>Question results will appear here once the Stack Exchange API is connected.</p></div>
-            <div class="card-footer"><span>Stack Exchange API <span class="planned-label">· planned</span></span><a href="https://stackoverflow.com/questions">Browse questions <span aria-hidden="true">↗</span></a></div>
-          </article>
+        <div id="history" class="history"></div>
+        <div class="results-heading">
+          <h3 id="results-title">Your discoveries</h3>
+          <button id="retry" type="button" hidden>Retry search</button>
         </div>
+        <p id="status" role="status" aria-live="polite" aria-atomic="true">
+          Choose a topic to begin exploring.
+        </p>
+        <div id="results" class="results" aria-busy="false"></div>
+        <button id="more" type="button" hidden>Load more results</button>
+        <p class="attribution">
+          Repository data from <a href="https://github.com">GitHub</a>.
+          Questions and author attribution from
+          <a href="https://stackoverflow.com">Stack Overflow</a>, under
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a
+          >. Follow each question for its original content and license.
+        </p>
       </section>
-      <section class="idea-section container" id="how-it-works" aria-labelledby="idea-title">
-        <div class="idea-intro"><p class="eyebrow">A LITTLE CURIOSITY GOES A LONG WAY</p><h2 id="idea-title">From “what if”<br />to “I built this.”</h2><p>The hub is being built around a simple learning rhythm.</p></div>
-        <ol class="learning-steps"><li><span>01</span><div><h3>Discover something interesting.</h3><p>A repository, a question, or a concept you haven’t explored yet.</p></div></li><li><span>02</span><div><h3>Pull on the thread.</h3><p>Read the code. Understand the explanation. Connect the dots.</p></div></li><li><span>03</span><div><h3>Make it your own.</h3><p>Take what you learn into a small experiment or your next project.</p></div></li></ol>
+      <section
+        class="container library"
+        id="library"
+        aria-labelledby="library-title"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">KEEP THE GOOD FINDS CLOSE</p>
+            <h2 id="library-title">Your learning library</h2>
+          </div>
+          <p>Saved in this browser only.<br />No account or cloud sync.</p>
+        </div>
+        <p id="storage-status" role="status"></p>
+        <div id="saved" class="results"></div>
       </section>
-      <section class="project-status container" id="project-status" aria-labelledby="status-title"><div><p class="eyebrow">BUILT WITH INTENTION. GROWING IN THE OPEN.</p><h2 id="status-title">The foundation is here.<br />Discovery comes next.</h2><p>This is an early preview of Developer Learning Hub. Next up: connecting GitHub and Stack Overflow, then bringing search to life.</p></div><span class="phase-badge"><span class="status-dot" aria-hidden="true"></span> Phase 01 / Foundation</span></section>
+      <section class="container about" id="about">
+        <p class="eyebrow">BUILT FOR THE NEXT SMALL BREAKTHROUGH</p>
+        <h2>Follow a thread.<br />Make something of it.</h2>
+        <p>
+          A focused space for your first experiment, your next project, and
+          everything you learn along the way.
+        </p>
+        <a href="#discover">Keep exploring ↑</a>
+      </section>
     </main>
-    <footer class="site-footer container"><a class="footer-brand" href="#">&lt;/&gt; <strong>Developer Learning Hub</strong></a><p>Discover. Learn. Build.</p><a href="#main">Back to top ↑</a><small>An independent learning project. Not affiliated with GitHub or Stack Overflow.</small></footer>
+    <footer class="container">
+      <strong>&lt;/&gt; Developer Learning Hub</strong>
+      <p>Discover. Learn. Build.</p>
+      <small
+        >An independent learning project. Not affiliated with GitHub or Stack
+        Overflow.</small
+      >
+    </footer>
+    <noscript
+      >This hub requires JavaScript to search and save resources.</noscript
+    >
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

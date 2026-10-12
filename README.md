@@ -1,55 +1,50 @@
-# Developer Learning Hub
+﻿# Developer Learning Hub
 
-Discover. Learn. Build.
+A Vite and vanilla JavaScript application for discovering public GitHub repositories and Stack Overflow questions. Discover. Learn. Build.
 
-A vanilla JavaScript, HTML, and CSS project for BYU–Idaho WDD 330, designed as the foundation for a developer discovery platform.
+## Develop
 
-## Current scope — Week 5 foundation
-
-- Vite project setup and modular folder structure.
-- Initial semantic page layout with responsive styles.
-- Accessible mobile navigation with Escape support and a no-JavaScript fallback.
-- Disabled, explicitly labeled search shell and honest coming-soon discovery states.
-
-GitHub REST API, Stack Exchange API, functional search, filters, saved resources, and recent searches are **not implemented**. External discovery links go directly to the source websites.
-
-## Local development
-
-Use Node.js 20.19+ or 22.12+ (Node 24 is supported) and npm.
+Use Node.js 20.19+ or 22.12+ (see package.json for supported engine ranges).
 
 ```sh
 npm install
-npm run dev
+npm run dev -- --host 127.0.0.1
 ```
 
-Open the printed local URL, normally `http://localhost:5173/developer-learning-hub/`. In PowerShell environments that block `npm.ps1`, use `npm.cmd` for these commands.
+Open http://127.0.0.1:5173/developer-learning-hub/ (Vite chooses another port if 5173 is occupied).
 
 ```sh
+npm test
 npm run check
 npm run build
-npm run preview
+npm run preview -- --host 127.0.0.1
 ```
 
-The check command validates JavaScript syntax. The build command creates `dist/`. Preview normally serves `http://localhost:4173/developer-learning-hub/`.
+Preview defaults to http://127.0.0.1:4173/developer-learning-hub/.
 
-## Structure
+## Architecture
 
-```text
-index.html                  Semantic layout and metadata
-public/favicon.svg          Original vector brand mark
-src/main.js                 Application entry
-src/components/navigation.js Presentation-only navigation behavior
-src/styles/tokens.css       Shared design values
-src/styles/main.css         Layout and responsive styling
-src/services/               Reserved for future API modules
-src/utils/                  Reserved for future shared helpers
-vite.config.js              GitHub Pages base path
-```
+- `index.html`: semantic page shell, navigation, discovery, library, metadata.
+- `src/main.js`: application state, search journeys, history, library, latest-request protection.
+- `src/services/search.js`: public API URLs, normalization, caching, deduplication, timeout, quotas and backoff.
+- `src/components/results.js`: safe DOM card rendering, attribution, external link allowlist.
+- `src/components/navigation.js`: accessible mobile menu with Escape support.
+- `src/utils/storage.js`: versioned local storage support with session fallback and bounded history.
+- `src/styles/main.css`: responsive interface, focus styles and reduced motion.
+- `tests/core.test.js`: dependency-free service and persistence tests.
 
-The base path is `/developer-learning-hub/` in preparation for GitHub Pages. No deployment workflow or deployment has been added. There are no credentials or external font/image dependencies; visuals use original CSS and text symbols.
+No credentials, server, authentication, or new dependencies are required. Never put private tokens in frontend code or VITE_ variables.
 
-## Manual browser review
+## Search behavior
 
-Review at 320px, 375px, 768px, and desktop widths; check wrapping and horizontal overflow. Use keyboard Tab and Enter to test the skip link, navigation, and external links. On mobile, test opening the menu, selecting a link, and pressing Escape. Check that focus is visible, headings and labels read correctly with a screen reader, reduced motion is respected, and disabled search is explained. Disable JavaScript to check that navigation remains available. Review the production preview and favicon under the configured base path.
+Search explicitly with Enter, the search button, or a suggested topic. Source switches, filters, and sorts repeat the current query. GitHub supports best match, stars, forks, updated date, and a selection of language filters. Stack Overflow supports relevance, votes, activity, creation date, accepted answers, and no-accepted-answer filtering. These controls query the APIs rather than filtering only the visible page.
 
-This foundation has no automated browser or accessibility test suite. JavaScript syntax and production build checks do not replace browser review.
+Pages contain up to 12 resources. Load more appends unique IDs. GitHub's search window is bounded; the hub stops at 83 pages (996 resources) to avoid exceeding its 1,000-result limit. Identical requests share an in-flight promise; results are cached for 60 seconds with a 50-entry cap. Requests time out after 15 seconds. Rate-limit/backoff cooldowns apply for the current page session; reloading resets them. A zero Stack Exchange quota conservatively pauses requests for 24 hours.
+
+Saved resources and the eight latest successful searches are local to the current browser and origin. They are snapshots rather than live-synced resources. No data is sent to an application backend. Searching does send keywords to the selected public API. Storage failures show a notice and preserve changes in memory for the current session. Other open tabs refresh their saved/history views after storage changes.
+
+Question titles are decoded in an inert document and inserted as text, never as live HTML. External resource links allow only HTTPS GitHub/Stack Overflow hosts and open a new tab with noopener/noreferrer. Question cards link to the original question and its author when available, and show the API content-license field; the page provides Stack Overflow and CC BY-SA attribution.
+
+## Deployment and verification
+
+The existing GitHub Pages workflow and Vite base `/developer-learning-hub/` remain intact. No deployment was performed. See `COMPLETION_REPORT.md` for implementation details and `QA_REPORT.md` for the final audit, confirmed fixes, test results, and required browser checks.
